@@ -5,13 +5,22 @@ import './App.css';
 
 import tempIcon from './assets/icons/temperature.png'
 import HumidityIcon from './assets/icons/humidity.png'
-import windSpeed from './assets/icons/windock.png'
-import cloudCover from './assets/icons/clouds.png'
-import windDirection from './assets/icons/anemometer.png'
+import WindDirection from './assets/icons/windock.png'
+import WindSpeed from './assets/icons/anemometer.png'
+import CloudCover from './assets/icons/clouds.png'
 
+import { Container } from './components/styled';
+import { WeatherSection } from './components/styled'
+import { Header } from './components/styled';
+import { FormWrapper } from './components/styled';
+import { InfoBody } from './components/styled';
+import { WeatherElement } from './components/styled';
+import { WeatherHeader } from './components/styled';
+import { WeatherValues } from './components/styled';
+import { WeatherIcon } from './components/styled';
+import { WeatherInfo } from './components/styled';
 
-
-function App() {
+const App = () => {
     const [lat, setLat] = useState([]);
     const [long, setLong] = useState([]);
 
@@ -23,21 +32,20 @@ function App() {
 
     }, []);
 
-    const[weatherData, setWeatherData] = useState([]);
     const [city, setCity] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`submitting + ${city} from geoposition + ${lat} + ${long}`)
+        console.log(`submitting ${city} from geoposition ${lat} ${long}`)
     }
 
     return (
         <div className="App">
-            <div className='container'>
-                <div className='weather-section'>
-                    <h1>Any City Weather</h1>
-                    <div className='weather-section__search'>
-                        <form className='weather-section__form' onSubmit={handleSubmit}>
+            <Container>
+                <WeatherSection>
+                    <Header>Any City Weather</Header>
+                    <FormWrapper>
+                    <form className='weather-section__form' onSubmit={handleSubmit}>
                             <input  type='text'
                                     value={city} 
                                     onInput={e => setCity(e.target.value)} 
@@ -45,47 +53,84 @@ function App() {
                             <button type='submit' 
                                     className='weather-section__btn' 
                                     onClick={handleSubmit}>Check</button>
-                        </form>
-                    </div>
-                    <div className='weather-section__body'>
-                        <div className='weather-section__element'>
-                            <p>Temp</p>
-                            <div className='weather-section__values'>
-                                <img src={tempIcon} className='weather-section__icon' alt='Element Icon'/>
-                                <p>C</p>
-                            </div>
-                        </div>
-                        <div className='weather-section__element'>
-                            <p>Humidity</p>
-                            <div className='weather-section__values'>
-                                <img src={HumidityIcon} className='weather-section__icon' alt='Element Icon'/>
-                                <p>%</p>
-                            </div>
-                        </div>
-                        <div className='weather-section__element'>
-                            <p>Wind Speed</p>
-                            <div className='weather-section__values'>
-                                <img src={windDirection} className='weather-section__icon' alt='Element Icon'/>
-                                <p>km/hr</p>
-                            </div>
-                        </div>
-                        <div className='weather-section__element'>
-                            <p>Wind Direction</p>
-                            <div className='weather-section__values'>
-                                <img src={windSpeed} className='weather-section__icon' alt='Element Icon'/>
-                                <p>Direction</p>
-                            </div>
-                        </div>
-                        <div className='weather-section__element'>
-                            <p>Cloud Cover</p>
-                            <div className='weather-section__values'>
-                                <img src={cloudCover} className='weather-section__icon' alt='Element Icon'/>
-                                <p>%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </form>
+                    </FormWrapper>
+                    <InfoBody>
+                        <WeatherElement>
+                            <WeatherHeader>Temperature</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={tempIcon} alt="Any City Weather" />
+                                <WeatherInfo>°C</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Humidity</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={HumidityIcon} alt="Any City Weather" />
+                                <WeatherInfo>%</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Wind Speed</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={WindSpeed} alt="Any City Weather" />
+                                <WeatherInfo>km/hr</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Wind Direction</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={WindDirection} alt="Any City Weather" />
+                                <WeatherInfo>Direction</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Cloud Cover</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={CloudCover} alt="Any City Weather" />
+                                <WeatherInfo>%</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                    </InfoBody>
+                    <InfoBody>
+                        <WeatherElement>
+                            <WeatherHeader>Temperature</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={tempIcon} alt="Any City Weather" />
+                                <WeatherInfo>°C</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Humidity</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={HumidityIcon} alt="Any City Weather" />
+                                <WeatherInfo>%</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Wind Speed</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={WindSpeed} alt="Any City Weather" />
+                                <WeatherInfo>km/hr</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Wind Direction</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={WindDirection} alt="Any City Weather" />
+                                <WeatherInfo>Direction</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                        <WeatherElement>
+                            <WeatherHeader>Cloud Cover</WeatherHeader>
+                            <WeatherValues>
+                                <WeatherIcon src={CloudCover} alt="Any City Weather" />
+                                <WeatherInfo>%</WeatherInfo>
+                            </WeatherValues>
+                        </WeatherElement>
+                    </InfoBody>
+                </WeatherSection>
+            </Container>
         </div>
     );
 }
