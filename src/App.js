@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import tempIcon from './assets/icons/temperature.png'
 import HumidityIcon from './assets/icons/humidity.png'
@@ -21,6 +23,8 @@ import { WeatherIcon } from './components/styled';
 import { WeatherInfo } from './components/styled';
 
 const App = () => {
+    // const notify = () => toast("Wow so easy !");
+
     const [lat, setLat] = useState([]);
     const [long, setLong] = useState([]);
 
@@ -32,11 +36,17 @@ const App = () => {
 
     }, []);
 
-    const [city, setCity] = useState([]);
+    const [requestedCity, setRequestedCity] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`submitting ${city} from geoposition ${lat} ${long}`)
+        if (requestedCity.length < 3) {
+            toast.error('Enter city name, or Full city name')
+        }
+        else {
+            toast.success('Great, Busy Searching......')
+            console.log(requestedCity)
+        }
     }
 
     return (
@@ -47,8 +57,8 @@ const App = () => {
                     <FormWrapper>
                     <form className='weather-section__form' onSubmit={handleSubmit}>
                             <input  type='text'
-                                    value={city} 
-                                    onInput={e => setCity(e.target.value)} 
+                                    value={requestedCity} 
+                                    onInput={e => setRequestedCity(e.target.value)} 
                                     placeholder='Enter any city'/>
                             <button type='submit' 
                                     className='weather-section__btn' 
@@ -131,6 +141,7 @@ const App = () => {
                     </InfoBody>
                 </WeatherSection>
             </Container>
+            <ToastContainer />
         </div>
     );
 }
